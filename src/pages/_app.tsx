@@ -7,16 +7,17 @@ import { makeServer } from '../services/mirage/mirage'
 
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { SidebarDrawerProvider } from '../contexts/SidebarDrawerContext'
+import { queryClient } from '../services/queryClient'
 
 if (process.env.NODE_ENV === 'development'){
   makeServer();
 }
 
-const queryCLient = new QueryClient();
+
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <QueryClientProvider client={queryCLient}>
+    <QueryClientProvider client={queryClient}>
       <ChakraProvider theme={theme}>
         <SidebarDrawerProvider>
           <Component {...pageProps} /> 
